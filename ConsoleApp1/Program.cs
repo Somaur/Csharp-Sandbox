@@ -1,13 +1,44 @@
-﻿internal class Program
+﻿class Program
 {
-    private static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello, World!");
-        int number = 1719820;
-        // C# 的库函数 能够将数字转为二进制字符串
-        // PadLeft 是字符串处理函数 用于左边添加0
-        Console.WriteLine(Convert.ToString(number, 2).PadLeft(32, '0'));
-        // 虽然第二个参数填进制，但是只有 2 8 10 16 进制可用，其他输入会报异常
-        // Console.WriteLine(Convert.ToString(number, 4).PadLeft(32, '0')); // ArgumentException
+        Console.WriteLine(1_0_2_4);
+        Task task = new Task(CallMethod);
+        task.Start();
+        task.Wait();
+        Console.ReadLine();
+    }
+
+    static async void CallMethod()
+    {
+        string filePath = "D:\\Documents\\From Honor\\法宝.txt";
+        Task<int> task = ReadFile(filePath);
+
+        Console.WriteLine(" Other Work 1");
+        Console.WriteLine(" Other Work 2");
+        Console.WriteLine(" Other Work 3");
+
+        int length = await task;
+        Console.WriteLine(" Total length: " + length);
+
+        Console.WriteLine(" After work 1");
+        Console.WriteLine(" After work 2");
+    }
+
+    static async Task<int> ReadFile(string file)
+    {
+        int length = 0;
+
+        Console.WriteLine(" File reading is stating");
+        using (StreamReader reader = new StreamReader(file))
+        {
+            // Reads all characters from the current position to the end of the stream asynchronously   
+            // and returns them as one string.   
+            string s = await reader.ReadToEndAsync();
+
+            length = s.Length;
+        }
+        Console.WriteLine(" File reading is completed");
+        return length;
     }
 }

@@ -1,3 +1,30 @@
 ﻿# 2022-09-24
 int? x;  // 表示x可以是null
 y = x ?? -1;  // 表示x是null时表达式的值取1，否则取x。很像 SQL 的 isnull()
+
+var x = 5;  // 对标C++的 auto 类型推断
+
+// LINQ: 一种查询语言  System.Linq
+
+
+# 容器
+数组 Array
+int[] a = new int[10];
+对象类，不可变长，类似 Java 数组
+*多维数组 int [ , ] x = new int[3, 4];
+*交错数组（数组的数组） int [][] x = new int[5][]; // <-引用的数组
+
+列表 List<> 类似 C++ Vector
+
+关联数组 Associative Array
+（Dictionary 字典） 类似 C++ Map， java HashMap、TreeMap， python dict
+
+字符串 String (不可变对象)
+StringBuilder 用于高频率的字符串改动，类似 java StringBuffer
+
+
+# 类
+properties 字段控制方法
+class {
+	private int x { get; set; }   // <- 表明 x 可读可写
+}
